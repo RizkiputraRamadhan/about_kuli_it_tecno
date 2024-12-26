@@ -1,0 +1,23 @@
+.ql-container {
+    padding: 3 !important;
+    border-radius: 0 0 5px 5px !important;
+}
+
+#editor {
+    min-height: 200px;
+}
+
+#toolbar-container {
+    border-radius: 5px 5px 0 0 !important;
+}
+
+img:not(.rounded-circle) {
+    max-width: 80% !important;
+    height: auto !important;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    margin: auto;
+}

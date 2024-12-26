@@ -1,0 +1,112 @@
+.card {
+    border-radius: 10px !important;
+}
+
+.breadcrumb {
+    display: flex;
+    justify-content: start;
+    box-shadow: 0 8px 14px -2px rgba(0, 0, 0, 0.1),
+        0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    border-radius: 35px;
+    padding: 20px;
+}
+
+.breadcrumb-links {
+    display: flex;
+    column-gap: 1rem;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.breadcrumb-links>li:nth-child(n + 4) {
+    display: none;
+}
+
+.breadcrumb-box {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb-link {
+    color: #9ca3af;
+}
+
+.breadcrumb-box:hover>*:not(.breadcrumb-icon) {
+    color: #4f46e5;
+}
+
+.breadcrumb-icon,
+.breadcrumb-icon-home {
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    color: #9ca3af;
+}
+
+.breadcrumb-links li:first-child .breadcrumb-text {
+    display: none;
+}
+
+.breadcrumb-text {
+    margin-left: 1rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+
+
+
+.toggle-search  {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .search-group  {
+        width: 800px !important;
+    }
+}
+
+
+
+.select2-container {
+}
+
+.select2.select2-container .select2-selection {
+    height: 36px;
+    display: block;
+    padding: 3px 1px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #5a6a85;
+    background-color: transparent;
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid #dfe5ef;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 7px;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+}
+
+.select2-container .select2-dropdown {
+    position: absolute;
+    z-index: 9999;
+}
+
+.select2-container--default .select2-selection--single {
+    height: 36px;
+}
+
+.select2-dropdown {
+    width: 100%;
+}
