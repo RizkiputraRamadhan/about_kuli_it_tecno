@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.client')
 @section('title', $pages)
 @section('content')
     <div class="">
@@ -97,8 +97,11 @@
                             <p class="text-sm text-gray-800 text-center">or</p>
                             <hr class="w-full border-gray-300" />
                         </div>
-                        <div class="mt-2">
-                            <button type="button"
+                    </form>
+                    <div>
+                        <form action="{{ route('google.redirect') }}" method="POST">
+                            @csrf
+                            <button type="submit"
                                 class="w-full shadow py-2.5 px-4 text-sm tracking-wide hover:bg-slate-100 rounded-md focus:outline-none">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20px" class="inline" viewBox="0 0 512 512">
                                     <path fill="#fbbd00"
@@ -122,20 +125,12 @@
                                 </svg>
                                 <span class="ml-2">Masuk Dengan Google</span>
                             </button>
-                        </div>
-
-                        <div class="space-x-6 flex justify-center mt-6">
-                            <button type="button" class="border-none outline-none">
-
-                            </button>
-
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
 
-                <div class="hidden lg:block bg-[#000842] rounded-xl lg:p-12 p-8">
-                    <img src="https://readymadeui.com/signin-image.webp" class="w-full h-full object-contain"
-                        alt="login-image" />
+                <div class="hidden lg:block rounded-xl  p-8">
+                    <img src="{{ asset('assets/auth.jpg') }}" class="w-full h-full object-contain" alt="login-image" />
                 </div>
             </div>
         </div>

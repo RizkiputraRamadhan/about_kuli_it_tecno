@@ -1,4 +1,4 @@
-@extends('layouts.backend')
+@extends('layouts.admin')
 @section('title', 'Category')
 @section('content')
     <div class="accordion accordion-flush bg-white" id="accordionFlushExample">

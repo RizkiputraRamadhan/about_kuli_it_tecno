@@ -1,4 +1,4 @@
-@extends('layouts.backend')
+@extends('layouts.admin')
 @section('title', 'Technology')
 @section('content')
     <div class="accordion accordion-flush bg-white" id="accordionFlushExample">
@@ -54,8 +54,8 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $row->name }}</td>
-                                        <td><span
-                                                class="badge rounded-pill fw-medium fs-2 text-end" style="background-color: {{ $row->color }};">{{ $row->slug }}</span>
+                                        <td><span class="badge rounded-pill fw-medium fs-2 text-end"
+                                                style="background-color: {{ $row->color }};">{{ $row->slug }}</span>
                                         </td>
                                         <td>
                                             <button type="button" class="btn btn-sm btn-outline-success edit-tech"
@@ -101,8 +101,8 @@
                                 placeholder="Technology">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="color">Color</label>
-                            <input class="form-control" name="color" type="text" id="color" required=""
+                            <label class="form-label" for="color">Color : </label>
+                            <input class="p-2" value="#00000" name="color" type="color" id="color" required=""
                                 placeholder="#00000">
                         </div>
 
@@ -130,12 +130,12 @@
                         <div class="mb-3">
                             <label class="form-label" for="edit-name">Technology</label>
                             <input class="form-control" name="name" type="text" id="edit-name" required=""
-                                placeholder="#00000">
+                                placeholder="">
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="edit-color">Color</label>
-                            <input class="form-control" name="color" type="text" id="edit-color" required=""
-                                placeholder="Technology">
+                            <input class="p-2" value="#00000" name="color" type="color" id="edit-color"
+                                required="" placeholder="#00000">
                         </div>
                         <div class="form-group" style="text-align: right;">
                             <button class="btn btn-primary" type="submit">

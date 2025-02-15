@@ -19,7 +19,7 @@
 </head>
 
 <body class="bg-white w-full">
-    @include('includes.navigasi')
+    @include('widget.client.navigasi')
     <!-- Main Content -->
     <div class=" mx-auto">
         <div style="display: none"
@@ -33,29 +33,13 @@
             </div>
         </div>
 
-
-
         @yield('content')
     </div>
 
     <!-- Footer -->
-    <footer class="footer p-10 bg-neutral text-neutral-content">
-        <nav>
-            <h6 class="footer-title">Services</h6>
-            <a class="link link-hover">Branding</a>
-            <a class="link link-hover">Design</a>
-        </nav>
-        <nav>
-            <h6 class="footer-title">Company</h6>
-            <a class="link link-hover">About us</a>
-            <a class="link link-hover">Press kit</a>
-        </nav>
-        <nav>
-            <h6 class="footer-title">Legal</h6>
-            <a class="link link-hover">Terms of </a>
-        </nav>
-    </footer>
+    @include('widget.client.footer')
 </body>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
     integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -67,18 +51,6 @@
     $(document).ready(function() {
         $('#sidebarToggle').on('click', function() {
             $('#sidebar').toggle();
-
-        });
-        $('.dropdown-btn').on('click', function() {
-            const parent = $(this).data('parent');
-            const child = $('[data-child="' + parent + '"]');
-
-            child.stop(true, true).slideToggle(500);
-
-            $(this).find('.dropdown-icon').toggleClass('fa-angle-up fa-angle-down');
-
-            $('.dropdown-content').not(child).slideUp(500);
-            $('.dropdown-btn').not(this).find('.dropdown-icon').removeClass('fa-angle-up').addClass('fa-angle-down');
         });
     });
 </script>

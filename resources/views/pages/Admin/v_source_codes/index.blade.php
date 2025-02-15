@@ -1,4 +1,4 @@
-@extends('layouts.backend')
+@extends('layouts.admin')
 @section('title', 'Source Codes')
 @section('content')
     <div class="accordion accordion-flush bg-white" id="accordionFlushExample">
@@ -16,8 +16,8 @@
                         <div class="col-md-3 mb-4 text-white">
                             <div class="card bg-success">
                                 <div class="card-body">
-                                    <h5 class="card-title text-white">Admin</h5>
-                                    <p class="card-text text-white">{{ $counts }}</p>
+                                    <h5 class="card-title text-white">Jumlah Keseluruhan</h5>
+                                    <p class="card-text text-white">{{ $counts }} Project</p>
                                 </div>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-3">
-                        <a href="{{ route('source_codes_admin.create') }}" class="btn btn-primary" >
+                        <a href="{{ route('source_codes_admin.create') }}" class="btn btn-primary">
                             <i class="fa-solid fa-circle-plus"></i> Tambah Project
                         </a>
                     </div>
@@ -45,23 +45,33 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
+                                    <th>Viewer</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody id="table-body">
                                 @foreach ($source_codes as $row)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $row->name }}</td>
-                                        <td>{{ $row->email }}</td>
-                                       
+                                        <td>{{ $loop->iteration }}.</td>
+                                        <td>{{ $row->title }}</td>
+                                        <td>{{ $row->viewer }}</td>
                                         <td>
-                                            <button type="button" class="btn btn-sm btn-outline-success edit-user"
+                                            <a href="{{ route('source_codes_admin.status', $row->id) }}"
+                                                class="badge rounded-pill fw-medium fs-2 text-end {{ $row->status == 1 ? 'bg-success-subtle text-success ' : 'bg-danger-subtle text-danger ' }}">
+                                                {{ $row->status == 1 ? 'PUBLISH' : 'DRAFT' }} <i class="fa-solid fa-hand-pointer"></i>
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <a href="/source_codes/admin/step/1/{{ $row->slug }}"
+                                                class="btn btn-sm btn-outline-success edit-user"
                                                 data-id="{{ $row->id }}">
                                                 <i class="fa-regular fa-pen-to-square"></i>
-                                            </button>
-                                            <form action="/source_codes/delete/{{ $row->id }}" id="delete_{{ $row->id }}"
-                                                method="post" style="display: inline-block;">
+                                            </a>
+                                            <form action="{{ route('source_codes_admin.destroy', $row->id) }}"
+                                                id="delete_{{ $row->id }}" method="post"
+                                                style="display: inline-block;">
                                                 @csrf
                                                 <button type="button" class="btn btn-sm btn-outline-danger show_confirm">
                                                     <i class="fa-regular fa-trash-can"></i>
@@ -81,9 +91,8 @@
         </div>
     </div>
 
-   
+
 @endsection
 
 @push('script')
-
 @endpush

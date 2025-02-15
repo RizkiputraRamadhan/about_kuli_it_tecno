@@ -16,12 +16,13 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('thumbnail');
             $table->string('title');
-            $table->longText('description');
-            $table->string('categories');
-            $table->string('technologies');
-            $table->string('price');
-            $table->string('file_url');
-            $table->unsignedBigInteger('user_id');
+            $table->longText('description')->nullable();
+            $table->string('categories')->nullable();
+            $table->string('technologies')->nullable();
+            $table->string('price')->nullable();
+            $table->enum('status', [0,1])->default(0);
+            $table->string('file_url')->nullable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
         });
     }

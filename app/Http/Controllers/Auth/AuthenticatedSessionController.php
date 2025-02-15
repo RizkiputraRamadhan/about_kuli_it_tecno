@@ -13,6 +13,7 @@ use Illuminate\Auth\Events\Registered;
 use App\Providers\RouteServiceProvider;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Support\Facades\Password;
+use Laravel\Socialite\Facades\Socialite;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -47,16 +48,16 @@ class AuthenticatedSessionController extends Controller
 
         Auth::login($user);
 
-        return redirect('/home');
+        return redirect()->intended('/home');
     }
 
     public function login()
     {
         if (auth()->check()) {
             if (auth()->user()->roles == 'USER') {
-                return redirect('/home');
+                return redirect()->intended('/home');
             } else {
-                return redirect('/dashboard');
+                return redirect()->intended('/dashboard');
             }
         }
 
@@ -86,6 +87,47 @@ class AuthenticatedSessionController extends Controller
                 'email' => 'Email atau pasword salah.',
             ])
             ->withInput($request->only('email', 'remember'));
+    }
+
+    // auth google
+    public function redirect()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function callback(Request $request)
+    {
+        $userFromGoogle = Socialite::driver('google')->user();
+
+        $userFromDatabase = User::where('google_id', $userFromGoogle->getId())->first();
+
+        if (!$userFromDatabase) {
+            $alreadyEmail = User::where('email', $userFromGoogle->getEmail())->first();
+
+            if ($alreadyEmail) {
+                $alreadyEmail->update([
+                    'google_id' => $userFromGoogle->getId(),
+                ]);
+                auth('web')->login($alreadyEmail);
+            } else {
+                $newUser = User::create([
+                    'google_id' => $userFromGoogle->getId(),
+                    'name' => $userFromGoogle->getName(),
+                    'email' => $userFromGoogle->getEmail(),
+                    'password' => bcrypt(str()->random(16)),
+                ]);
+                auth('web')->login($newUser);
+            }
+        } else {
+            auth('web')->login($userFromDatabase);
+        }
+
+        session()->regenerate();
+
+        if (Auth::user()->roles == 'ADMIN') {
+            return redirect()->intended('/dashboard');
+        }
+        return redirect()->intended('/home');
     }
 
     /**

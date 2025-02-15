@@ -1,4 +1,4 @@
-@extends('layouts.backend')
+@extends('layouts.admin')
 @section('title', 'User')
 @section('content')
     <div class="accordion accordion-flush bg-white" id="accordionFlushExample">
@@ -68,8 +68,9 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama</th>
+                                    <th>Name</th>
                                     <th>Email</th>
+                                    <th>With</th>
                                     <th>Roles</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -80,6 +81,15 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $row->name }}</td>
                                         <td>{{ $row->email }}</td>
+                                        <td>
+                                            @if ($row->google_id)
+                                                <span
+                                                    class="badge rounded-pill fw-medium fs-2 bg-success-subtle text-success text-end">Google</span>
+                                            @else
+                                                <span
+                                                    class="badge rounded-pill fw-medium fs-2 bg-info-subtle text-info text-end">Manual</span>
+                                            @endif
+                                        </td>
                                         <td>
                                             @if ($row->roles == 'ADMIN')
                                                 <span
