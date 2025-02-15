@@ -16,7 +16,7 @@ class CategoriesController extends Controller
             'counts' => Categories::count()
         ];
 
-        return view('pages.Admin.v_categories.index', $data);
+        return view('pages.Admin.v_categories.index', $data)->with('page', 'categories');
     }
 
 

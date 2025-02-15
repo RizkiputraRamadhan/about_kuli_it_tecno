@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
-
 class UsersController extends Controller
 {
     public function index()
@@ -26,7 +25,7 @@ class UsersController extends Controller
             'userGrowth' => $userGrowth,
         ];
 
-        return view('pages.Admin.v_users.index', $data);
+        return view('pages.Admin.v_users.index', $data)->with('page', 'users');
     }
 
     public function profile()
@@ -104,26 +103,21 @@ class UsersController extends Controller
         return redirect('/users')->with('success', 'User berhasil diupdate.');
     }
 
-    public function updateAccount(Request $request, $id)
+    public function updateAccount(Request $request)
     {
         $request->validate(
             [
                 'name' => 'required|string|max:255',
-                'email' => 'required|string|email|max:255|unique:users,email,' . $id,
                 'password' => 'nullable|string|min:6',
             ],
             [
                 'name.required' => 'Nama harus diisi.',
-                'email.required' => 'Email harus diisi.',
-                'email.email' => 'Format email tidak valid.',
-                'email.unique' => 'Email sudah digunakan.',
                 'password.min' => 'Password minimal harus 6 karakter.',
             ],
         );
 
-        $user = User::findOrFail($id);
-        $user->nama = $request->name;
-        $user->email = $request->email;
+        $user = User::findOrFail(auth()->user()->id);
+        $user->name = $request->name;
         if ($request->password) {
             $user->password = Hash::make($request->password);
         }

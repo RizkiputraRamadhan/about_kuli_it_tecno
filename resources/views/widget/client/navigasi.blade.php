@@ -10,7 +10,7 @@
                     <div tabindex="0" role="button" class="">
                         <div class="w-10 rounded-full">
                             <img alt="Tailwind CSS Navbar component" class=" rounded-full"
-                                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                                src="{{ asset('assets/avatar.png') }}" />
                         </div>
                     </div>
                     <ul tabindex="0"
@@ -58,12 +58,7 @@
 
             <div class="overflow-x-auto scrollbar-gradient ml-2 flex-1">
                 <ul class="flex flex-row font-medium mt-0 space-x-8 rtl:space-x-reverse text-sm w-max">
-                    <li>
-                        <a href="{{ env('APP_URL') }}/#fitures" class=" hover:underline">Fitures</a>
-                    </li>
-                    <li>
-                        <a href="{{ env('APP_URL') }}/#about-us" class=" hover:underline">Tentang Kami</a>
-                    </li>
+
                     <li>
                         <a href="{{ env('APP_URL') }}/#working-system" class=" hover:underline">Kinerja</a>
                     </li>
@@ -71,13 +66,14 @@
                         <a href="{{ env('APP_URL') }}/#benefit" class=" hover:underline">Benefit</a>
                     </li>
                     <li>
-                        <a href="{{ env('APP_URL') }}/#project-premium" class=" hover:underline">Project Premium</a>
+                        <a href="/source-code" class=" hover:underline">Project Premium Murah</a>
+                    </li>
+                   
+                    <li>
+                        <a href="{{ env('APP_URL') }}/#about-us" class=" hover:underline">Tentang Kami</a>
                     </li>
                     <li>
-                        <a href="/source-code" class=" hover:underline">Source Code Lengkap</a>
-                    </li>
-                    <li>
-                        <a href="#" class=" hover:underline">Contact</a>
+                        <a href="/contact" class=" hover:underline">Contact</a>
                     </li>
                 </ul>
             </div>

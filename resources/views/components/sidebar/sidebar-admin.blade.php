@@ -15,9 +15,28 @@
                     <span class="hide-menu">Home</span>
                 </li>
 
+                @if (auth()->user()->roles == 'USER')
+                    <li class="sidebar-item {{ $page == 'dashboard' ? 'active' : '' }}">
+                        <a class="sidebar-link {{ $page == 'dashboard' ? 'active' : '' }}"
+                            href="{{ route('home.index') }}" aria-expanded="false">
+                            <i class="fa-solid fa-house-fire"></i>
+                            <span class="hide-menu">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item {{ $page == 'transaction' ? 'active' : '' }}">
+                        <a class="sidebar-link {{ $page == 'transaction' ? 'active' : '' }}"
+                            href="{{ route('transaction_client.index') }}" aria-expanded="false">
+                            <i class="fa-solid fa-money-bill-transfer"></i>
+                            <span class="hide-menu">Transaction</span>
+                        </a>
+                    </li>
+                @endif
+
                 @if (auth()->user()->roles == 'ADMIN')
-                    <li class="sidebar-item {{ request()->is('dashboard*') ? 'active' : '' }}">
-                        <a class="sidebar-link" href="{{ route('dashboard.index') }}" aria-expanded="false">
+                    <li class="sidebar-item {{ $page == 'dashboard' ? 'active' : '' }}">
+                        <a class="sidebar-link {{ $page == 'dashboard' ? 'active' : '' }}"
+                            href="{{ route('dashboard.index') }}" aria-expanded="false">
                             <i class="fa-solid fa-house-fire"></i>
                             <span class="hide-menu">Dashboard</span>
                         </a>
@@ -29,24 +48,35 @@
                         <span class="hide-menu">MASTER DATA</span>
                     </li>
 
-                    <li class="sidebar-item {{ request()->is('users*') ? 'active' : '' }}">
-                        <a class="sidebar-link" href="{{ route('users.index') }}" aria-expanded="false">
+                    <li class="sidebar-item {{ $page == 'users' ? 'active' : '' }}">
+                        <a class="sidebar-link {{ $page == 'users' ? 'active' : '' }}" href="{{ route('users.index') }}"
+                            aria-expanded="false">
                             <i class="fa-solid fa-users-gear"></i>
                             <span class="hide-menu">Users</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item {{ request()->is('categories*') ? 'active' : '' }}">
-                        <a class="sidebar-link" href="{{ route('categories.index') }}" aria-expanded="false">
+                    <li class="sidebar-item {{ $page == 'categories' ? 'active' : '' }}">
+                        <a class="sidebar-link {{ $page == 'categories' ? 'active' : '' }}"
+                            href="{{ route('categories.index') }}" aria-expanded="false">
                             <i class="fa-solid fa-list"></i>
                             <span class="hide-menu">Categories</span>
                         </a>
                     </li>
 
-                    <li class="sidebar-item {{ request()->is('technology*') ? 'active' : '' }}">
-                        <a class="sidebar-link" href="{{ route('technology.index') }}" aria-expanded="false">
+                    <li class="sidebar-item {{ $page == 'technology' ? 'active' : '' }}">
+                        <a class="sidebar-link {{ $page == 'technology' ? 'active' : '' }}"
+                            href="{{ route('technology.index') }}" aria-expanded="false">
                             <i class="fa-solid fa-microchip"></i>
                             <span class="hide-menu">Technology</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item {{ $page == 'voucher' ? 'active' : '' }}">
+                        <a class="sidebar-link {{ $page == 'voucher' ? 'active' : '' }}"
+                            href="{{ route('voucher.index') }}" aria-expanded="false">
+                            <i class="fa-solid fa-ticket"></i>
+                            <span class="hide-menu">Voucher</span>
                         </a>
                     </li>
 
@@ -56,10 +86,19 @@
                         <span class="hide-menu">TRANSACTION DATA</span>
                     </li>
 
-                    <li class="sidebar-item {{ request()->is('source_codes_admin*') ? 'active' : '' }}">
-                        <a class="sidebar-link" href="{{ route('source_codes_admin.index') }}" aria-expanded="false">
+                    <li class="sidebar-item {{ $page == 'project' ? 'active' : '' }}">
+                        <a class="sidebar-link {{ $page == 'project' ? 'active' : '' }}"
+                            href="{{ route('source_codes_admin.index') }}" aria-expanded="false">
                             <i class="fa-solid fa-users-gear"></i>
                             <span class="hide-menu">Source Codes</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item {{ $page == 'transaction' ? 'active' : '' }}">
+                        <a class="sidebar-link {{ $page == 'transaction' ? 'active' : '' }}"
+                            href="{{ route('transaction.index') }}" aria-expanded="false">
+                            <i class="fa-solid fa-money-bill-transfer"></i>
+                            <span class="hide-menu">Transaction</span>
                         </a>
                     </li>
                 @endif

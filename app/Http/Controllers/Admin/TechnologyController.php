@@ -16,7 +16,7 @@ class TechnologyController extends Controller
             'counts' => Technology::count()
         ];
 
-        return view('pages.Admin.v_technology.index', $data);
+        return view('pages.Admin.v_technology.index', $data)->with('page', 'technology');
     }
 
 
